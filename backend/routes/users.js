@@ -35,4 +35,33 @@ router.post("/", function (req, res) {
     });
 });
 
+router.put("/:id", (req, res) => {
+  User.findById(req.params.id)
+    .then((user) => {
+      user.username = req.body.username;
+
+      user
+        .save()
+        .then((response) => {
+          res.json("Successfully updated user");
+        })
+        .catch((err) => {
+          res.status(400).json(`Error updating user at ID: ${req.params.id}`);
+        });
+    })
+    .catch((err) => {
+      res.status;
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  User.findByIdAndDelete(req.params.id)
+    .then((response) => {
+      res.json("Successfully deleted user");
+    })
+    .catch((err) => {
+      res.status(400).json(`Error deleting user at ID: ${req.params.id}`);
+    });
+});
+
 module.exports = router;

@@ -1,6 +1,5 @@
 const router = require("express").Router();
 let Item = require("../models/item.model");
-const { json } = require("express");
 
 router.get("/", (req, res) => {
   Item.find()
